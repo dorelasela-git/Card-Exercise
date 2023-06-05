@@ -8,11 +8,13 @@ function App() {
     {picture: photo3,
       name: 'Dorela',
       age: 21,
+      isGraduated: false,
       city: 'Tirane',
       skills: ['Mendix','React','Javascript']
     },
     {picture: photo2,
       name: 'Arild',
+      isGraduated: false,
       age: 30,
       city: 'Vienna',
       skills: ['ReactNative','React','Css']
@@ -21,6 +23,7 @@ function App() {
       name: 'Amar',
       age: 15,
       city: 'Berlin',
+      isGraduated: false,
       skills: ['HTML','.Net','C#']
     }
   ]
