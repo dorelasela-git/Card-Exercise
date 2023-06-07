@@ -1,22 +1,33 @@
-import Table from "./Table/Table";
+// import Table from "./Table/Table";
+import Form from "./Form/Form";
 const App = () => {
-  const studentDataList =
-      [
-        {student_id: 1, student_name: 'Matias', student_lastName: 'Leka', student_class: 12, grades:{math: 8, literature: 6, physics: 8, chemistry: 9, geography: 7, history: 9}},
-        {student_id: 2, student_name: 'Irena', student_lastName: 'Duka', student_class: 10, grades:{math: 5, literature: 9, physics: 6, chemistry: 5, geography: 5, history: 10}},
-        {student_id: 3, student_name: 'Maria', student_lastName: 'Agolli', student_class: 11, grades:{math: 9, literature: 6, physics: 7, chemistry: 8, geography: 10, history: 8}}
-      ];
-  const displayAverageGrade = (averageGrade) => {
-    alert(`Average Grade: ${averageGrade.toFixed(2)}`);
-  };
-  return (
-      <div>
-        <h1>Student Average & Grades</h1>
-        <Table studentDataList={studentDataList} displayAverageGrade={displayAverageGrade} />
-      </div>
-  );
-};
+    return(
+        <div>
+            <Form/>
+        </div>
+    )
+
+}
 export default App;
+//   const studentDataList =
+//       [
+//         {student_id: 1, student_name: 'Matias', student_lastName: 'Leka', student_class: 12, grades:{math: 8, literature: 6, physics: 8, chemistry: 9, geography: 7, history: 9}},
+//         {student_id: 2, student_name: 'Irena', student_lastName: 'Duka', student_class: 10, grades:{math: 5, literature: 9, physics: 6, chemistry: 5, geography: 5, history: 10}},
+//         {student_id: 3, student_name: 'Maria', student_lastName: 'Agolli', student_class: 11, grades:{math: 9, literature: 6, physics: 7, chemistry: 8, geography: 10, history: 8}}
+//       ];
+//   const displayAverageGrade = (averageGrade, rank) => {
+//       alert(
+//           `Average Grade: ${averageGrade.toFixed(2)}\nRank: ${rank}/${studentDataList.length}`
+//       );
+//   };
+//   return (
+//       <div>
+//         <h1>Student Average & Grades</h1>
+//         <Table studentDataList={studentDataList} displayAverageGrade={displayAverageGrade} />
+//       </div>
+//   );
+// };
+
 // import CardParent from "./Card/CardParent";
 // import photo3 from './Card/photo3.png'
 // import photo1 from './Card/photo1.png'
