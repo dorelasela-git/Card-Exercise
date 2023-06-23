@@ -1,0 +1,29 @@
+.recipe-details-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-details-heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.recipe-details-name {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.recipe-details-description {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.recipe-details-instructions {
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-line;
+}
