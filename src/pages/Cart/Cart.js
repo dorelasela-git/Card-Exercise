@@ -9,6 +9,7 @@ const Cart = () => {
   const totalPrice = ctxShop.totalPrice;
   const decreaseQuantity = ctxShop.decreaseQuantity;
   const increaseQuantity = ctxShop.increaseQuantity;
+
   return (
     <Layout>
       <h1 className="mb-4">Shopping Cart</h1>

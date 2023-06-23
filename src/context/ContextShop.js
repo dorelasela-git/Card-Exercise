@@ -20,8 +20,8 @@ export const ContextShopProvider = ({ children }) => {
     calTotalPrice();
   }, [cartItems]);
 
-  const createManager = (item) => {
-    setTotalItems([item, ...totalItems]);
+  const createManager = (newProduct) => {
+    setTotalItems([newProduct, ...totalItems]);
   };
 
   const deleteProductManager = (id) => {
