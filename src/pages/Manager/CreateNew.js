@@ -1,29 +1,30 @@
 import React, { useContext, useState } from "react";
-import { Form, Button, Row, Container,Col } from "react-bootstrap";
+import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import ContextShop from "../../context/ContextShop";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout/Layout";
 import Card from "react-bootstrap/Card";
 
 const CreateNewProduct = () => {
-  const [name, setName] = useState("");
-  const [productImage, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("0");
+  const [category, setCategory] = useState("");
   const { createManager } = useContext(ContextShop);
   const navigate = useNavigate();
 
   const createHandle = (e) => {
     e.preventDefault();
+
     const newProduct = {
-      name,
+      title,
       description,
       price,
-      productImage,
-      id: Date.now(),
+      thumbnail,
       quantity: 0,
+      category,
     };
-
     createManager(newProduct);
     navigate("/shop/manager");
   };
@@ -32,15 +33,14 @@ const CreateNewProduct = () => {
     <Layout>
       <Container>
         <Row>
-          <Col md={6}>
           <Form onSubmit={createHandle}>
             <h2>Create New Product</h2>
             <Form.Group controlId="name">
               <Form.Label>Name:</Form.Label>
               <Form.Control
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="description">
@@ -60,31 +60,26 @@ const CreateNewProduct = () => {
                 onChange={(e) => setPrice(e.target.value)}
               />
             </Form.Group>
+            <Form.Group>
+              <Form.Label>Category:</Form.Label>
+              <Form.Control
+                type="text"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group controlId="image">
               <Form.Label>Image</Form.Label>
               <Form.Control
                 type="text"
-                value={productImage}
-                onChange={(e) => setImage(e.target.value)}
+                value={thumbnail}
+                onChange={(e) => setThumbnail(e.target.value)}
               />
             </Form.Group>
             <Button className="my-3" variant="dark" type="submit">
               Add Product
             </Button>
           </Form>
-
-          </Col>
-
-    <Col>
-            <Form.Group controlId="image">
-              <Card.Img
-                  variant="top"
-                  src={productImage}
-                  style={{ width: "100%", height: "auto", objectFit: "fill" }}
-              />
-            </Form.Group>
-    </Col>
-
         </Row>
       </Container>
     </Layout>

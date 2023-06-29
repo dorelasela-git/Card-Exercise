@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import ContextShop from "../../context/ContextShop";
 import ProductCard from "../Products/ProductCard";
 import Layout from "../../components/Layout/Layout";
@@ -9,7 +10,6 @@ const Cart = () => {
   const totalPrice = ctxShop.totalPrice;
   const decreaseQuantity = ctxShop.decreaseQuantity;
   const increaseQuantity = ctxShop.increaseQuantity;
-
   return (
     <Layout>
       <h1 className="mb-4">Shopping Cart</h1>

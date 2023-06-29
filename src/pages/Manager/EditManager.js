@@ -1,57 +1,66 @@
-import React, { useState, useContext } from "react";
-import { Form, Button, Container,Col,Row } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import ContextShop from "../../context/ContextShop";
 import Layout from "../../components/Layout/Layout";
-import Card from "react-bootstrap/Card";
+import axios from "axios";
 
 const EditProductForm = () => {
   const { id } = useParams();
   const { editProduct, totalItems } = useContext(ContextShop);
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [category, setCategory] = useState("");
   const product = totalItems.find((item) => item.id === parseInt(id));
 
-  const [name, setName] = useState(product.name);
-  const [description, setDescription] = useState(product.description);
-  const [price, setPrice] = useState(product.price);
-  const [productImage, setProductImage] = useState(product.productImage);
-
-  const navigate = useNavigate();
+  useEffect(() => {
+    axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
+      const productData = response.data;
+      setTitle(productData.title);
+      setThumbnail(productData.thumbnail);
+      setDescription(productData.description);
+      setCategory(productData.category);
+      setPrice(productData.price.toString());
+    });
+  }, [id]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedProduct = {
-      ...product,
-      name,
+      title,
+      thumbnail,
       description,
+      category,
       price,
-      productImage,
     };
-
-    editProduct(updatedProduct);
-    navigate("/shop/manager");
+    axios
+      .put(`https://dummyjson.com/products/${id}`, updatedProduct)
+      .then((response) => {
+        const updatedProduct = response.data;
+        console.log(updatedProduct);
+        alert("Product updated successfully");
+        navigate("/shop/manager");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
     <Layout>
       <Container>
-        <Row>
-        <Col md={6}>
         <h2>Edit Product</h2>
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="id">
-            <Form.Label>ID:</Form.Label>
-            <Form.Control
-                type="text"
-                value={id}
-                onChange={(e) => setName(e.target.value)} readOnly
-            />
-          </Form.Group>
-          <Form.Group>
+          <Form.Group controlId="name">
             <Form.Label>Name:</Form.Label>
             <Form.Control
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
 
@@ -69,8 +78,8 @@ const EditProductForm = () => {
             <Form.Label>Image:</Form.Label>
             <Form.Control
               type="text"
-              value={productImage}
-              onChange={(e) => setProductImage(e.target.value)}
+              value={thumbnail}
+              onChange={(e) => setThumbnail(e.target.value)}
             />
           </Form.Group>
 
@@ -82,22 +91,10 @@ const EditProductForm = () => {
               onChange={(e) => setPrice(e.target.value)}
             />
           </Form.Group>
-
           <Button className="my-3" variant="dark" type="submit">
             Update Product
           </Button>
         </Form>
-        </Col>
-          <Col>
-            <Form.Group controlId="image">
-              <Card.Img
-                  variant="top"
-                  src={productImage}
-                  style={{ width: "100%", height: "auto", objectFit: "fill" }}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
       </Container>
     </Layout>
   );

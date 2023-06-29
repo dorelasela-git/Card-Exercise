@@ -17,12 +17,12 @@ const ProductCard = ({
     <Card>
       <Card.Img
         variant="top"
-        src={_product.productImage}
+        src={_product.thumbnail}
         style={{ width: "100%", height: "200px", objectFit: "fill" }}
       />
       <Card.Body>
-        <Card.Title>{_product.name}</Card.Title>
-        <Card.Text>{_product.description}</Card.Text>
+        <Card.Title>{_product.title}</Card.Title>
+        <Card.Text>Category: {_product.category}</Card.Text>
         <Card.Text>
           <b>${_product.price}</b>
         </Card.Text>
@@ -67,9 +67,11 @@ const ProductCard = ({
             </Button>
           </>
         ) : (
-          <Button variant="dark" onClick={_addToCart}>
-            Add to cart
-          </Button>
+          <>
+            <Button variant="dark" onClick={_addToCart}>
+              Add to cart
+            </Button>
+          </>
         )}
       </Card.Body>
     </Card>

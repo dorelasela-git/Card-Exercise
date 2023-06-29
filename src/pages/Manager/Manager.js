@@ -1,6 +1,6 @@
 import ProductCard from "../Products/ProductCard";
 import Layout from "../../components/Layout/Layout";
-import { Button } from "react-bootstrap";
+import { Button, Pagination } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import ContextShop from "../../context/ContextShop";
@@ -8,13 +8,24 @@ import "./style/styleManger.css";
 
 const Manager = () => {
   const cxt = useContext(ContextShop);
-  const { totalItems, deleteProductManager } = cxt;
+  const {
+    deleteProductManager,
+    totalItems,
+    currentPage,
+    setCurrentPage,
+    paginate,
+    newItems,
+    itemsPerPage,
+  } = cxt;
+  const handlePageChange = (pageNumber) => {
+    paginate(pageNumber);
+  };
 
   return (
     <Layout>
       <h1>Manager Tools</h1>
       <div className="product-container">
-        {totalItems.map((product) => (
+        {newItems.map((product) => (
           <ProductCard
             key={product.id}
             manager={true}
@@ -23,6 +34,19 @@ const Manager = () => {
           />
         ))}
       </div>
+      <Pagination style={{ paddingBottom: "20px" }}>
+        {[...Array(Math.ceil(totalItems.length / itemsPerPage)).keys()].map(
+          (pageNumber) => (
+            <Pagination.Item
+              key={pageNumber}
+              active={pageNumber + 1 === currentPage}
+              onClick={() => handlePageChange(pageNumber + 1)}
+            >
+              {pageNumber + 1}
+            </Pagination.Item>
+          )
+        )}
+      </Pagination>
       <Button className="fixed-bottom" variant="dark">
         <Link to={"/shop/create"} style={{ color: "white" }}>
           Create New
