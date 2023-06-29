@@ -24,7 +24,6 @@ export const ContextShopProvider = ({ children }) => {
     const numberPerPage = itemsPerPage;
     const propertiesYouWantToShow = "title,description,price,thumbnail";
 
-    console.log(pageNumber);
 
     const fetchFilteredItems = async () => {
       try {
@@ -62,7 +61,6 @@ export const ContextShopProvider = ({ children }) => {
     }
   }, [selectedCategory]);
 
-  console.log(selectedCategory);
 
   useEffect(() => {
     const getData = () => {

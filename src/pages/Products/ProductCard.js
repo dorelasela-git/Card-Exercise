@@ -22,7 +22,6 @@ const ProductCard = ({
       />
       <Card.Body>
         <Card.Title>{_product.title}</Card.Title>
-        <Card.Text>Category: {_product.category}</Card.Text>
         <Card.Text>
           <b>${_product.price}</b>
         </Card.Text>

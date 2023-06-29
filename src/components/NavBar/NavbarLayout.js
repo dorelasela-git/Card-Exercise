@@ -4,6 +4,7 @@ import { Form, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import ContextShop from "../../context/ContextShop";
+import './style.css'
 
 const NavbarLayout = () => {
   const { setFilter, category, setSelectedCategory } = useContext(ContextShop);
@@ -37,6 +38,7 @@ const NavbarLayout = () => {
                 onChange={(e) => setFilter(e.target.value)}
               />
             </Form>
+            <div className="pagination">
             <select
               title="Categories"
               id="collasible-nav-dropdown"
@@ -48,6 +50,7 @@ const NavbarLayout = () => {
                 </option>
               ))}
             </select>
+            </div>
           </Nav>
         </Container>
       </Navbar>
